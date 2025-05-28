@@ -1,15 +1,11 @@
-name: icapi_extractors
+name: ice_cream_api
 sourceId: {{ icapi_extractors_source_id }}
-
 capabilities:
-  - annotationsAcl:
-      actions: [READ, WRITE]
+  - datasetsAcl:
+      actions: [READ]
       scope:
-        all: {}
-  - assetsAcl:
-      actions: [READ, WRITE]
-      scope:
-        all: {}
+        idScope:
+          ids: [{{ icapi_ds_external_id }}]
   - dataModelInstancesAcl:
       actions: [READ, WRITE]
       scope:
@@ -18,39 +14,30 @@ capabilities:
       actions: [READ, WRITE]
       scope:
         all: {}
-  - datasetsAcl:
-      actions: [READ, WRITE, OWNER]
-      scope:
-        all: {}
-  - eventsAcl:
-      actions: [READ, WRITE]
-      scope:
-        all: {}
-  - extractionConfigsAcl:
-      actions: [READ, WRITE]
-      scope:
-        all: {}
   - extractionPipelinesAcl:
-      actions: [READ, WRITE]
+      actions: [READ]
       scope:
-        all: {}
+        datasetScope:
+          ids: [{{ icapi_ds_external_id }}]
   - extractionRunsAcl:
       actions: [READ, WRITE]
       scope:
-        all: {}
+        datasetScope:
+          ids: [{{ icapi_ds_external_id }}]
   - filesAcl:
       actions: [READ, WRITE]
       scope:
-        all: {}
+        datasetScope:
+          ids: [{{ icapi_ds_external_id }}]
   - functionsAcl:
       actions: [READ, WRITE]
       scope:
         all: {}
-  - hostedExtractorsAcl:
-      actions: [READ, WRITE]
+  - groupsAcl:
+      actions: [LIST, READ]
       scope:
-        all: {}
-  - labelsAcl:
+        currentuserscope: {}
+  - hostedExtractorsAcl:
       actions: [READ, WRITE]
       scope:
         all: {}
@@ -59,13 +46,11 @@ capabilities:
       scope:
         all: {}
   - rawAcl:
-      actions: [READ, WRITE, LIST]
+      actions: [LIST, READ, WRITE]
       scope:
-        all: {}
-  - securityCategoriesAcl:
-      actions: [LIST, MEMBEROF, DELETE, CREATE, UPDATE]
-      scope:
-        all: {}
+        tableScope:
+          dbsToTables:
+            ice-cream-factory-db: [assets]
   - sessionsAcl:
       actions: [LIST, CREATE, DELETE]
       scope:
@@ -74,15 +59,7 @@ capabilities:
       actions: [READ, WRITE]
       scope:
         all: {}
-  - timeSeriesSubscriptionsAcl:
-      actions: [READ, WRITE]
-      scope:
-        all: {}
   - transformationsAcl:
-      actions: [READ, WRITE]
-      scope:
-        all: {}
-  - workflowOrchestrationAcl:
       actions: [READ, WRITE]
       scope:
         all: {}
